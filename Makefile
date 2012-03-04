@@ -1,6 +1,6 @@
 
 TESTS = test/up.js
-REPORTER = dot
+REPORTER = tap
 
 test:
 	@./node_modules/.bin/mocha \
