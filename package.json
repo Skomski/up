@@ -1,23 +1,30 @@
 {
-    "name": "up"
-  , "description": "Zero downtime reloads for Node HTTP(S) servers."
-  , "tags": ["cluster", "reload", "process", "monitor", "graceful", "restart"]
-  , "homepage": "https://github.com/learnboost/up"
-  , "version": "0.1.7"
-  , "bin": { "up": "./bin/up" }
-  , "main": "./lib/up"
-  , "engines": { "node": ">= 0.6.0" }
-  , "dependencies": {
-        "eq": "0.1.0"
-      , "ms": "0.1.0"
-      , "debug": "0.1.0"
-      , "commander": "0.5.1"
-      , "distribute": "0.1.4"
-    }
-  , "devDependencies": {
-        "mocha": "*"
-      , "expect.js": "*"
-      , "express": "*"
-      , "superagent": "*"
-    }
+  "name": "up",
+  "description": "Zero downtime reloads for Node HTTP servers",
+  "tags": [
+    "cluster",
+    "reload",
+    "process",
+    "monitor",
+    "graceful",
+    "restart"
+  ],
+  "homepage": "https://github.com/skomski/up",
+  "version": "0.2.0",
+  "main": "./lib/up",
+  "scripts": {
+    "test": "node test/run.js"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "dependencies": {
+    "debug": "0.1.0",
+    "distribute": "0.1.4"
+  },
+  "devDependencies": {
+    "urun": "*",
+    "express": "*",
+    "request": "*"
+  }
 }

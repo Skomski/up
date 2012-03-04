@@ -1,17 +1,7 @@
-
 # Up
 
 Zero-downtime reloads built on top of the
 [distribute](http://github.com/learnboost/distribute) load balancer.
-
-Simply running
-
-```bash
-$ up --port 80 --watch my-http-server.js
-```
-
-Will start `my-http-server.js` on port 80, then reload it with no downtime
-when files change in the working directory.
 
 ## Features
 
@@ -38,48 +28,7 @@ module.exports = http.Server(function (req, res) {
 });
 ```
 
-### A) CLI
-
-To get the `up` command, make sure to install with the `-g` flag:
-
-```bash
-$ npm install -g up
-```
-
-**Usage: up [options] <file>**
-
-The `up` command accepts the following options:
-
-- `-p`/`--port`
-
-  - the port to listen on. Not required if the module already `listen`s.
-  - Defaults to `3000`.
-
-- `-w`/`--watch`
-
-  - Whether to watch for changes.
-  - Watches the working directory for changes.
-
-- `-r`/`--require` `<mod>`
-
-  - Specifies a module to require from each worker.
-  - Can be used multiple times.
-
-- `-n`/`--number`
-
-  - number of workers. It gets evaluated with
-    [eq.js](https://gist.github.com/1590954).
-  - You can optionally use the `cpus` variable. eg: `cpus + 2`.
-  - You can use all the `Math` methods. eg: `round(cpus / 2)`.
-  - Defaults to number of CPUS, or `1` if `NODE_ENV` is `development`.
-
-- `-t`/`--timeout`
-
-  - number of ms after which a worker is killed once it becomes inactive.
-  - Strings like `'10s'` are accepted.
-  - Defaults to `'10m'`, or `'500ms'` if `NODE_ENV` is `development`.
-
-### B) JavaScript API
+### JavaScript API
 
 ```js
 var up = require('up')
@@ -119,12 +68,6 @@ this is called by sending the `SIGUSR2` signal:
 ```bash
 $ kill -s SIGUSR2 <process id>
 ```
-
-If you're running with `up` CLI, this command is output to stderr for your
-convenience.
-
-The CLI tool also auto-reloads if you pass the `--watch` option and a file
-changes in the working directory.
 
 ### Strategy
 

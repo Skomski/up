@@ -1,8 +1,3 @@
-
-/**
- * Test dependencies
- */
-
 var up = require('../lib/up')
   , net = require('net')
   , http = require('http')
@@ -11,16 +6,7 @@ var up = require('../lib/up')
   , child_process = require('child_process')
   , Distributor = require('distribute')
 
-/**
- * Suite.
- */
-
 describe('up', function () {
-
-  it('should be a distributor', function () {
-    var srv = up(http.Server(), __dirname + '/server')
-    expect(srv).to.be.a(Distributor);
-  });
 
   it('should load the workers', function (done) {
     var httpServer = http.Server().listen(6000, onListen)
@@ -163,6 +149,7 @@ describe('up', function () {
         // since the ping interval is set to 15ms, we try in 30
         setTimeout(function () {
           expect(alive(pid)).to.be(false);
+          console.log(pid)
           done();
         }, 30);
       });
