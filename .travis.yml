@@ -1,0 +1,8 @@
+language: node_js
+
+scripts:
+ - "make test"
+
+node_js:
+  - 0.6
+  - 0.4
