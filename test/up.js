@@ -8,64 +8,6 @@ var up = require('../lib/up')
 
 describe('up', function () {
 
-  it('should load the workers', function (done) {
-    var httpServer = http.Server().listen(6000, onListen)
-      , srv = up(httpServer, __dirname + '/server')
-
-    function onListen (err) {
-      if (err) return done(err);
-      request.get('http://localhost:6000', function (res) {
-        var pid = res.body.pid;
-        expect(pid).to.be.a('number');
-        done();
-      });
-    }
-  });
-
-  it('should round-robin the workers', function (done) {
-    var httpServer = http.Server().listen(6001, onListen)
-      , srv = up(httpServer, __dirname + '/server', { numWorkers: 2 })
-
-    function onListen (err) {
-      if (err) return done(err);
-
-      srv.on('spawn', function () {
-        // count workers
-        if (2 != srv.workers.length) return;
-
-        request.get('http://localhost:6001', function (res) {
-          var pid1 = res.body.pid;
-          expect(pid1).to.be.a('number');
-
-          request.get('http://localhost:6001', function (res) {
-            var pid2 = res.body.pid;
-            expect(pid2).to.be.a('number');
-            expect(pid2).to.not.equal(pid1);
-
-            request.get('http://localhost:6001', function (res) {
-              expect(res.body.pid).to.equal(pid1);
-
-              request.get('http://localhost:6001', function (res) {
-                expect(res.body.pid).to.equal(pid2);
-                done();
-              });
-            });
-          });
-        });
-      });
-    }
-  });
-
-  it('should expose ports and procs as public api', function (done) {
-    var httpServer = http.Server().listen()
-      , srv = up(httpServer, __dirname + '/server', { numWorkers: 2 })
-
-    srv.once('spawn', function () {
-      expect(srv.workers).to.have.length(1);
-      done();
-    });
-  });
-
   it('should reload workers', function (done) {
     var httpServer = http.Server().listen(6002, onListen)
       , srv = up(httpServer, __dirname + '/server', { numWorkers: 2 })
