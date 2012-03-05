@@ -1,4 +1,7 @@
-# Up
+This is a fork of learnboost's Up. Some addtional features and to match special needs at Resumable :)
+
+# Up [![Build Status](https://secure.travis-ci.org/Skomski/up.png?branch=master)](http://travis-ci.org/Skomski/up)
+
 
 Zero-downtime reloads built on top of the
 [distribute](http://github.com/learnboost/distribute) load balancer.
@@ -9,9 +12,6 @@ Zero-downtime reloads built on top of the
 - Works at the HTTP request level. It never drops requests or destroys
   `Keep-Alive` sockets while reloading.
 - Compatible with any HTTP server.
-- Easy-to-use CLI interface for development with automatic reloading
-  upon file changes.
-- Gracefully handles reloads with syntax errors during development.
 - Built on [distribute](http://github.com/learnboost/distribute).
 
 ## Setup
@@ -48,8 +48,8 @@ parameters:
 - server (`http.Server`) server to accept connections on
 - module (`String`) absolute path to the module.
 - options (`Object`)
-  - `numWorkers`: (`Number`|`String`): see `--workers` above.
-  - `workerTimeout`: (`Number`|`String`): see `--timeout` above.
+  - `numWorkers`: (`Number`): ms
+  - `workerTimeout`: (`Number`): ms
 
 ## Middleware
 
