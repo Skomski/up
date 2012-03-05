@@ -1,4 +1,7 @@
-# Up
+This is a fork of learnboost's Up. Some addtional features and to match special needs at Resumable :)
+
+# Up [![Build Status](https://secure.travis-ci.org/Skomski/up.png?branch=master)](http://travis-ci.org/Skomski/up)
+
 
 Zero-downtime reloads built on top of the
 [distribute](http://github.com/learnboost/distribute) load balancer.
